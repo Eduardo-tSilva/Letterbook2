@@ -1,0 +1,76 @@
+body {
+    padding-top: 70px; /* Espaço para navbar fixa */
+    background-color: #111827; /* fundo suave */
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Botão criar */
+#create {
+    min-width: 160px;
+}
+
+/* Tabela estilizada */
+table {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    border-radius: 6px;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+}
+
+td {
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+/* Botões da tabela */
+.btn-sm {
+    min-width: 70px;
+}
+
+/* Hover linhas da tabela */
+tbody tr:hover {
+    background-color: #e9f5ff;
+}
+
+h2{
+    color: #ffffff;
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-weight: bold;
+}
+
+.alumni-sans-pinstripe-regular {
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.mt-4 {
+    border-radius: 10px;
+}
+
+.btn-warning {
+    background-color: #EBDF78;
+    color: #ffffff;
+    border: 0;
+}
+.btn-warning:hover {
+    background-color: #C4BB64;
+    color: #ffffff;
+}
+
+.btn-info {
+    background-color: #007bff;
+    border: 0;
+}
+.btn-info:hover {
+    background-color: #0055B0;
+}

@@ -1,0 +1,105 @@
+body {
+    font-family: 'Times New Roman', sans-serif;
+    padding: 2rem;
+    background-color: #111827;
+    color: #e5e7eb;
+}
+
+h1 {
+    color: #ffffff;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+form {
+    padding: 2rem;
+    background-color: #1f2937;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+form div {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    font-size: 1.25rem;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #374151;
+    color: #e5e7eb;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+.back-button {
+    background-color: #6b7280;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.back-button:hover {
+    background-color: #4b5563;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.image-preview img,
+.existing-images img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.preview-img:hover,
+.existing-images img:hover {
+    transform: scale(1.05);
+}
+
+.selected {
+    border-color: #2563eb;
+}

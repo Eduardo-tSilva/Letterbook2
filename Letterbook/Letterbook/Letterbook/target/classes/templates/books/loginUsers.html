@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - Letterbook</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Alumni+Sans+Pinstripe:ital@0;1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+
+        <!-- Título à esquerda -->
+        <a class="navbar-brand fw-bold" href="/" style="font-size: 1.75rem;">Letterbook</a>
+
+        <!-- Área do usuário à direita -->
+        <div class="d-flex align-items-center">
+            <!-- Se logado: mostrar dropdown -->
+            <div class="dropdown" th:if="${session.usuarioLogado != null}">
+                <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    Olá, <span th:text="${session.usuarioLogado.nome}">Usuário</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="/editUsers">Editar Perfil</a></li>
+                    <li><a class="dropdown-item" href="/wishlist">Lista de Desejos</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/logout">Sair</a></li>
+                </ul>
+            </div>
+
+            <!-- Se NÃO logado: mostrar botão de login -->
+            <div th:unless="${session.usuarioLogado != null}">
+                <a class="btn btn-outline-primary" href="/loginUsers">Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="login-container">
+    <h2>Login</h2>
+
+    <form th:action="@{/loginUsers}" method="post">
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" class="form-control" placeholder="Enter your email" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" class="form-control" placeholder="Enter your password" required />
+        </div>
+
+        <button type="submit" class="btn-login mt-3">Entrar</button>
+    </form>
+
+    <div th:if="${erro}" class="error-message">
+        <p th:text="${erro}"></p>
+    </div>
+
+    <a href="/registerUsers">Registrar-se</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+body{
+    background-color: #111827;
+    color: #e5e7eb;
+    font-family: "Alumni Sans Pinstripe", "sans-serif";
+    font-weight: bold;
+    padding-top: 70px; /* Espaço para navbar fixa */
+}
+
+.alumni-sans-pinstripe-regular {
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.books-list {
+    display: grid;
+    grid-template-columns: repeat(5, 180px); /* 5 colunas fixas de 180px */
+    gap: 0.8rem; /* espaçamento menor entre os livros */
+    justify-content: center; /* centraliza o grid */
+    padding: 2rem;
+}
+
+.book-container {
+    cursor: pointer;
+    width: 180px;
+    transition: transform 0.3s ease; /* transição suave */
+}
+
+.book-container:hover {
+    transform: scale(1.05); /* aumenta 5% */
+    z-index: 10; /* para ficar na frente dos outros */
+}
+
+.book-image img {
+    width: 180px;
+    height: 270px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.book-image p,
+.no-image {
+    width: 180px;
+    height: 270px;
+    background-color: #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #9ca3af;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* NAVBAR GERAL */
+.navbar {
+    background-color: #1f2937 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    height: 70px;
+}
+
+/* TITULO */
+.navbar-brand {
+    color: #ffffff !important;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding-left: 0.5rem;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+}
+
+/* CAMPO DE PESQUISA */
+.navbar .form-control {
+    background-color: #374151;
+    color: #ffffff;
+    border: 1px solid #4b5563;
+    font-size: 1rem;
+    font-family: 'Abel', sans-serif;
+}
+
+.navbar .form-control::placeholder {
+    color: #9ca3af;
+}
+
+.navbar .btn-outline-primary {
+    color: #60a5fa;
+    border-color: #60a5fa;
+    font-weight: bold;
+}
+
+.navbar .btn-outline-primary:hover {
+    background-color: #60a5fa;
+    color: #ffffff;
+}
+
+/* DROPDOWN DO USUÁRIO */
+.navbar .dropdown-toggle {
+    color: #60a5fa;
+    font-weight: bold;
+    font-family: 'Abel', sans-serif;
+}
+
+.navbar .dropdown-menu {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+}
+
+.navbar .dropdown-item {
+    color: #d1d5db;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+
+
+

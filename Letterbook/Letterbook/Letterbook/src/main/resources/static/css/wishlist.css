@@ -1,0 +1,136 @@
+body {
+    padding-top: 80px;
+    background-color: #111827;
+    font-family: "Alumni Sans Pinstripe", "sans-serif";
+    color: white; /* ou #eee, #ccc */
+}
+
+.carousel-container {
+    justify-content: center;
+    padding: 2rem;
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+    gap: 0.8rem;
+    scroll-behavior: smooth;
+    grid-template-columns: repeat(5, 180px);
+}
+
+.book-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 180px;
+    height: 270px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.book-card:hover {
+    transform: scale(1.03);
+}
+
+.book-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.book-card:hover .remove-btn {
+    display: flex;
+}
+
+.book-title {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 0.9rem;
+}
+
+/* NAVBAR GERAL */
+.navbar {
+    background-color: #1f2937 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    height: 70px;
+}
+
+/* TITULO */
+.navbar-brand {
+    color: #ffffff !important;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding-left: 0.5rem;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+}
+
+/* CAMPO DE PESQUISA */
+.navbar .form-control {
+    background-color: #374151;
+    color: #ffffff;
+    border: 1px solid #4b5563;
+    font-size: 1rem;
+    font-family: 'Abel', sans-serif;
+}
+
+.navbar .form-control::placeholder {
+    color: #9ca3af;
+}
+
+.navbar .btn-outline-primary {
+    color: #60a5fa;
+    border-color: #60a5fa;
+    font-weight: bold;
+}
+
+.navbar .btn-outline-primary:hover {
+    background-color: #60a5fa;
+    color: #ffffff;
+}
+
+/* DROPDOWN DO USUÁRIO */
+.navbar .dropdown-toggle {
+    color: #60a5fa;
+    font-weight: bold;
+    font-family: 'Abel', sans-serif;
+}
+
+.navbar .dropdown-menu {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+}
+
+.navbar .dropdown-item {
+    color: #d1d5db;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #374151;
+    color: #ffffff;
+}

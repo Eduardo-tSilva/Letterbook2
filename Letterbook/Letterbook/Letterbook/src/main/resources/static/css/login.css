@@ -1,0 +1,135 @@
+body {
+    background-color: #111827;
+    color: #e5e7eb;
+    font-family: "Alumni Sans Pinstripe", "sans-serif";
+    padding-top: 100px;
+}
+
+.login-container {
+    max-width: 400px;
+    background-color: #1f2937;
+    padding: 2.5rem;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-family: "Abel", sans-serif;
+}
+
+label {
+    color: #d1d5db;
+    font-weight: bold;
+    font-family: "Abel", sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    background-color: #374151;
+    border: 1px solid #4b5563;
+    color: #ffffff;
+    border-radius: 8px;
+    font-family: "Abel", sans-serif;
+}
+
+.form-control::placeholder {
+    color: #9ca3af;
+}
+
+.btn-login {
+    width: 100%;
+    background-color: #60a5fa;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+    font-family: "Abel", sans-serif;
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #3b82f6;
+}
+
+.error-message {
+    color: #f87171;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    font-family: "Abel", sans-serif;
+}
+
+/* NAVBAR GERAL */
+.navbar {
+    background-color: #1f2937 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    height: 70px;
+}
+
+/* TITULO */
+.navbar-brand {
+    color: #ffffff !important;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding-left: 0.5rem;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+}
+
+/* CAMPO DE PESQUISA */
+.navbar .form-control {
+    background-color: #374151;
+    color: #ffffff;
+    border: 1px solid #4b5563;
+    font-size: 1rem;
+    font-family: 'Abel', sans-serif;
+}
+
+.navbar .form-control::placeholder {
+    color: #9ca3af;
+}
+
+.navbar .btn-outline-primary {
+    color: #60a5fa;
+    border-color: #60a5fa;
+    font-weight: bold;
+}
+
+.navbar .btn-outline-primary:hover {
+    background-color: #60a5fa;
+    color: #ffffff;
+}
+
+/* DROPDOWN DO USUÁRIO */
+.navbar .dropdown-toggle {
+    color: #60a5fa;
+    font-weight: bold;
+    font-family: 'Abel', sans-serif;
+}
+
+.navbar .dropdown-menu {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+}
+
+.navbar .dropdown-item {
+    color: #d1d5db;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+a{
+    color: #ffffff;
+    font-size: 20px;
+}

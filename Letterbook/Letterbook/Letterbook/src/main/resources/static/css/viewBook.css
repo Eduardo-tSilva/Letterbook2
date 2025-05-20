@@ -1,0 +1,272 @@
+body {
+    font-family: 'Times New Roman', sans-serif;
+    padding-top: 2rem;
+    background-color: #111827;
+    color: #e5e7eb;
+}
+
+.book-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.book-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.book-image img {
+    width: 230px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.book-image p {
+    width: 230px;
+    height: 320px;
+    background-color: #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #9ca3af;
+}
+
+.book-details h2 {
+    font-size: 2.250rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+
+}
+
+.book-details p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+    font-size: 1.110rem;
+
+}
+
+.sub {
+    font-family: 'Alumni Sans Pinstripe';
+    font-size: 1.25rem;
+}
+
+.synopsis-text {
+    margin-top: 0.5rem;
+    color: #B6C8D6;
+    text-align: justify;
+}
+
+span{
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+strong {
+    font-weight: normal;
+    color: #B6C8D6;
+    font-family: 'Alumni Sans Pinstripe';
+    font-size: 1.25rem;
+}
+
+.book-details {
+    margin-top: 0;
+}
+
+.book-details h2 {
+    margin-top: 0;
+}
+
+.book-bar {
+    display: flex;
+    flex-direction: row; /* <-- isso coloca os itens lado a lado */
+    justify-content: space-around; /* distribui o espaço entre eles */
+    align-items: center;
+    flex-wrap: wrap; /* quebra se faltar espaço */
+    width: 100%;
+    background-color: #374151;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #B6C8D6;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    gap: 1rem;
+}
+
+
+
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.95rem;
+    border-bottom: 2px;
+    border-color: #0055B0;
+}
+
+.bar-stars {
+    font-size: 1.2rem;
+    color: #fbbf24; /* amarelo para as estrelas */
+}
+
+.alumni-sans-pinstripe-regular {
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-style: normal;
+}
+
+.book-details span:first-of-type {
+    margin-right: 0.5rem;
+}
+
+.rate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    font-size: 40px;
+}
+
+.bar-stars {
+    display: flex;
+}
+
+.star {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: url('data:image/svg+xml;utf8,<svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12,17.27 18.18,21 16.54,13.97 22,9.24 14.81,8.63 12,2 9.19,8.63 2,9.24 7.46,13.97 5.82,21"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+/* camada dourada de preenchimento */
+.star::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width: 0;
+    background: url('data:image/svg+xml;utf8,<svg fill="gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12,17.27 18.18,21 16.54,13.97 22,9.24 14.81,8.63 12,2 9.19,8.63 2,9.24 7.46,13.97 5.82,21"/></svg>') no-repeat center;
+    background-size: contain;
+    pointer-events: none;
+    transition: width 0.2s ease;
+}
+
+/* preenchimento total */
+.star.full::before {
+    width: 100%;
+}
+
+/* preenchimento metade */
+.star.half::before {
+    width: 50%;
+}
+
+.book-rating {
+    font-weight:  bold!important;
+}
+
+.like-wishlist-group {
+    display: flex;
+    gap: 2rem; /* mais espaço entre os botões */
+    align-items: center;
+}
+
+.like-button,
+.wishlist-button {
+    background-color: transparent;
+    border: none;
+    color: #B6C8D6;
+    font-size: 1.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* espaço entre o ícone e o texto */
+    transition: color 0.2s ease;
+}
+
+.like-button:hover,
+.wishlist-button:hover {
+    color: #fbbf24; /* amarelo ao passar o mouse */
+}
+
+.like-button i,
+.wishlist-button i {
+    width: 20px;
+    height: 20px;
+}
+
+/* NAVBAR GERAL */
+.navbar {
+    background-color: #1f2937 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    height: 70px;
+}
+
+/* TITULO */
+.navbar-brand {
+    color: #ffffff !important;
+    font-size: 1.8rem !important;
+    font-weight: bold;
+    padding-left: 0.5rem;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+}
+
+/* CAMPO DE PESQUISA */
+.navbar .form-control {
+    background-color: #374151;
+    color: #ffffff;
+    border: 1px solid #4b5563;
+    font-size: 1rem !important;
+    font-family: 'Abel', sans-serif !important;
+}
+
+.navbar .form-control::placeholder {
+    color: #9ca3af;
+}
+
+.navbar .btn-outline-primary {
+    color: #60a5fa;
+    border-color: #60a5fa;
+    font-weight: bold;
+}
+
+.navbar .btn-outline-primary:hover {
+    background-color: #60a5fa;
+    color: #ffffff;
+}
+
+/* DROPDOWN DO USUÁRIO */
+.navbar .dropdown-toggle {
+    color: #60a5fa;
+    font-weight: bold;
+    font-family: 'Abel', sans-serif;
+}
+
+.navbar .dropdown-menu {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+}
+
+.navbar .dropdown-item {
+    color: #d1d5db;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+

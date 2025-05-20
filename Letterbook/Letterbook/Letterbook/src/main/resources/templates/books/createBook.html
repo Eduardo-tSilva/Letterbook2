@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${book.id != null and book.id != 0} ? 'Edit Book' : 'Create New Book'">Book Form</title>
+    <link rel="stylesheet" href="/css/createBook.css" />
+</head>
+<body>
+
+<div class="form-container">
+    <h1 th:text="${book.id != null and book.id != 0} ? 'Edit Book' : 'Create New Book'">Book Form</h1>
+
+    <form th:action="@{/books/createBook}" th:object="${book}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}" />
+
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" th:field="*{title}" required />
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+        </div>
+
+        <div>
+            <label for="author">Author:</label>
+            <input type="text" th:field="*{author}" required />
+            <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
+        </div>
+
+        <div>
+            <label for="synopsis">Synopsis:</label>
+            <textarea th:field="*{synopsis}" rows="5" required></textarea>
+            <span th:if="${#fields.hasErrors('synopsis')}" th:errors="*{synopsis}"></span>
+        </div>
+
+        <div>
+            <label for="genre">Genre:</label>
+            <input type="text" th:field="*{genre}" required />
+            <span th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></span>
+        </div>
+
+        <div>
+            <label for="year">Publication Year:</label>
+            <input type="number" th:field="*{year}" min="1000" max="9999" required />
+            <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+        </div>
+
+        <div>
+            <label for="images">Upload New Images (multiple):</label>
+            <input type="file" id="images" name="images" multiple accept="image/*" />
+        </div>
+
+        <div class="existing-images" th:if="${existingImages != null}">
+            <label>Existing Images:</label>
+            <ul style="list-style:none; padding:0;">
+                <li th:each="img : ${existingImages}" style="margin-bottom:10px;">
+                    <img th:src="@{|/uploads/${img.url}|}"
+                         alt="Image"
+                         class="preview-img"
+                         th:classappend="${img.principal} ? 'selected' : ''"
+                         th:attr="data-url=${img.url}"
+                         onclick="selectPrincipal(this, this.dataset.url)" />
+                    <label>
+                        <input type="checkbox" name="deleteImages" th:value="${img.id}" />
+                        Delete
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="image-preview" id="preview"></div>
+        <input type="hidden" id="principalImage" name="principalImage" th:value="${principalImageUrl}" />
+
+        <div class="form-buttons">
+            <form action="/books" method="get">
+                <button type="submit" class="back-button">← Back</button>
+            </form>
+            <button type="submit">Save Book</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const imagesInput = document.getElementById('images');
+    const preview = document.getElementById('preview');
+    const principalImageInput = document.getElementById('principalImage');
+
+    imagesInput.addEventListener('change', () => {
+        preview.innerHTML = '';
+        principalImageInput.value = '';
+
+        const files = Array.from(imagesInput.files);
+        files.forEach(file => {
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.title = file.name;
+                img.classList.add('preview-img');
+                img.onclick = () => {
+                    document.querySelectorAll('.preview-img').forEach(i => i.classList.remove('selected'));
+                    img.classList.add('selected');
+                    principalImageInput.value = file.name;
+                };
+                preview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+
+    function selectPrincipal(imgElem, url) {
+        document.querySelectorAll('.preview-img').forEach(i => i.classList.remove('selected'));
+        imgElem.classList.add('selected');
+        principalImageInput.value = url;
+    }
+
+    window.addEventListener('load', () => {
+        const selected = document.querySelector('.existing-images img.selected');
+        if (selected) {
+            principalImageInput.value = selected.dataset.url;
+        }
+    });
+</script>
+</body>
+</html>
