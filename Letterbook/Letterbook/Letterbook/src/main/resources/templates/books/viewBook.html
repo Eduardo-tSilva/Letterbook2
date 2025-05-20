@@ -86,22 +86,22 @@
 
 
       <div class="book-rate">
-      <div class="rate">
-        <span>Rate</span>
+        <div class="rate">
+          <span>Rate</span>
 
-        <div class="bar-stars">
-          <span class="star" data-value="1"></span>
-          <span class="star" data-value="2"></span>
-          <span class="star" data-value="3"></span>
-          <span class="star" data-value="4"></span>
-          <span class="star" data-value="5"></span>
+          <div class="bar-stars">
+            <span class="star" data-value="1"></span>
+            <span class="star" data-value="2"></span>
+            <span class="star" data-value="3"></span>
+            <span class="star" data-value="4"></span>
+            <span class="star" data-value="5"></span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="book-rating">
-      <p id="openReviewModal" style="cursor:pointer; color:#fbbf24; font-weight:600;">Review or Log</p>
-    </div>
+      <div class="book-rating">
+        <p id="openReviewModal" style="cursor:pointer; color:#fbbf24; font-weight:600;">Review or Log</p>
+      </div>
 
     </div>
 
@@ -143,7 +143,7 @@
       </div>
       <div class="modal-footer border-0">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button id="submitReview" type="button" class="btn btn-primary">Submit</button>
+        <button onclick = submitReview id="submitReview" type="button" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
@@ -151,27 +151,7 @@
 
 <script>
   // Variável para guardar a nota escolhida
-  let currentRating = 0;
 
-  const stars = document.querySelectorAll('.star');
-
-  function updateStars(rating) {
-    stars.forEach((star, i) => {
-      if (rating >= i + 1) {
-        star.style.color = '#fbbf24'; // amarelo
-      } else {
-        star.style.color = '#ccc'; // cinza
-      }
-    });
-  }
-
-  stars.forEach((star) => {
-    star.addEventListener('click', () => {
-      currentRating = parseInt(star.getAttribute('data-value'));
-      updateStars(currentRating);
-      console.log('Rating selecionado:', currentRating);
-    });
-  });
 
   // Evento do botão submit (aqui só um exemplo, adapte para enviar seu formulário ou AJAX)
   document.getElementById('submitReview').addEventListener('click', () => {
@@ -273,24 +253,53 @@
   });
 
   // Atualizar estrelas da modal
-  modalStars.forEach(star => {
-    star.addEventListener('click', () => {
-      modalRating = parseInt(star.getAttribute('data-value'));
-      updateModalStars(modalRating);
+  document.addEventListener('DOMContentLoaded', () => {
+    const stars = document.querySelectorAll('.star');
+    const reviewText = document.getElementById('reviewText');
+    const submitButton = document.getElementById('submitReview');
+    let currentRating = 0;
+
+    function updateStars(rating) {
+      stars.forEach((star, index) => {
+        star.classList.toggle('active', index < rating);
+      });
+      currentRating = rating;
+    }
+
+    stars.forEach((star, index) => {
+      star.addEventListener('mouseover', () => updateStars(index + 1));
+      star.addEventListener('click', () => updateStars(index + 1));
+    });
+
+    submitButton.addEventListener('click', () => {
+      const review = reviewText.value.trim();
+
+      if (currentRating === 0 || review.length === 0) {
+        alert('Escolha uma nota e escreva uma avaliação!');
+        return;
+      }
+
+      const bookId = /*[[${book.id}]]*/ '0';
+
+      fetch(`/reviews/add/${bookId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rating: currentRating, review })
+      })
+              .then(response => {
+                if (!response.ok) throw new Error('Erro ao enviar review.');
+                return response.json();
+              })
+              .then(() => {
+                alert('Review enviada!');
+                bootstrap.Modal.getInstance(document.getElementById('reviewModal')).hide();
+                updateStars(0);
+                reviewText.value = '';
+              })
+              .catch(err => alert(err.message));
     });
   });
 
-  function updateModalStars(rating) {
-    modalStars.forEach(star => {
-      if (parseInt(star.getAttribute('data-value')) <= rating) {
-        star.textContent = '★'; // estrela cheia
-        star.style.color = '#fbbf24';
-      } else {
-        star.textContent = '☆'; // estrela vazia
-        star.style.color = '#ccc';
-      }
-    });
-  }
 
   // Limpar modal ao fechar (Cancel ou fechar modal)
   document.getElementById('cancelReview').addEventListener('click', () => {
@@ -316,9 +325,20 @@
       return;
     }
     // Aqui você pode fazer o POST para seu backend com modalRating e reviewText
-    alert(`You rated ${modalRating} stars and wrote:\n${reviewText}`);
-    reviewModal.hide();
-  });
+    fetch('http://localhost:8080/assessments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        usuarioId: userId,        // tipo Long
+        livroId: bookId,          // tipo Integer
+        nota: rating,             // tipo Integer
+        comentario: reviewText    // tipo String
+      })
+    })
+  })
+
 </script>
 
 <script src="https://unpkg.com/lucide@latest"></script>
