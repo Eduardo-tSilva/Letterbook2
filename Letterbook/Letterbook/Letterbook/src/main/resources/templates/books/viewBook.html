@@ -16,11 +16,6 @@
 
     <a class="navbar-brand fw-bold" href="/" >Letterbook</a>
 
-    <form class="d-flex mx-auto w-50" action="/search" method="get">
-      <input class="form-control me-2" type="search" name="q" placeholder="Search books..." aria-label="Search">
-      <button class="btn btn-outline-primary" type="submit">Search</button>
-    </form>
-
     <div class="d-flex align-items-center">
       <div class="dropdown" th:if="${session.usuarioLogado != null}">
         <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown"
@@ -30,6 +25,7 @@
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
           <li><a class="dropdown-item" href="/editUsers">Editar Perfil</a></li>
           <li><a class="dropdown-item" href="/wishlist">Lista de Desejos</a></li>
+          <li><a class="dropdown-item" href="/books">Todos os Livros</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="/logout">Sair</a></li>
         </ul>
@@ -186,9 +182,6 @@
     reviewModal.show();
   });
 </script>
-
-
-<!-- Seu script atual de estrelas da barra principal permanece aqui -->
 
 <script>
   const stars = document.querySelectorAll('.star');

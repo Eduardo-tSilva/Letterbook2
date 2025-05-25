@@ -18,9 +18,26 @@
 
       <a class="navbar-brand fw-bold" href="/" style="font-size: 1.75rem;">Letterbook</a>
 
-      <form class="d-flex mx-auto w-50" action="/search" method="get">
-        <input class="form-control me-2" type="search" name="q" placeholder="Search books..." aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
+      <!-- Campos de busca -->
+      <form method="get" action="/wishlist" class="d-flex gap-3 align-items-end mb-4">
+        <div>
+          <label for="search" class="form-label">Título</label>
+          <input type="text" id="search" name="search" class="form-control"
+                 th:value="${search}" placeholder="Buscar por título" />
+        </div>
+
+        <div>
+          <label for="genre" class="form-label">Gênero</label>
+          <select id="genre" name="genre" class="form-select">
+            <option value="">Todos</option>
+            <option value="Romance" th:selected="${genre == 'Romance'}">Romance</option>
+            <option value="Ficção" th:selected="${genre == 'Ficção'}">Ficção</option>
+          </select>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-outline-primary">Buscar</button>
+        </div>
       </form>
 
       <div class="d-flex align-items-center">
@@ -32,6 +49,7 @@
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
             <li><a class="dropdown-item" href="/editUsers">Editar Perfil</a></li>
             <li><a class="dropdown-item" href="/wishlist">Lista de Desejos</a></li>
+            <li><a class="dropdown-item" href="/books/">Todos os Livros</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="/logout">Sair</a></li>
           </ul>

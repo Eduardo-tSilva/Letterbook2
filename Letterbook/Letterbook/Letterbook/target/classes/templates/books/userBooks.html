@@ -3,28 +3,53 @@
 <head>
     <meta charset="UTF-8" />
     <title>Letterbook</title>
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/index.css" />
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Alumni+Sans+Pinstripe:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
 
-
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid px-5 d-flex justify-content-between align-items-center">
 
-        <!-- Título à esquerda -->
+        <!-- Título -->
         <a class="navbar-brand fw-bold" href="/" style="font-size: 1.75rem;">Letterbook</a>
 
-        <!-- Campo de pesquisa centralizado -->
-        <form class="d-flex mx-auto w-50" action="/search" method="get">
-            <input class="form-control me-2" type="search" name="q" placeholder="Search books..." aria-label="Search">
-            <button class="btn btn-outline-primary" type="submit">Search</button>
-        </form>
+        <!-- Campos de busca -->
+        <div class="mx-auto" style="max-width: 600px; width: 150%;">
+            <form method="get" action="/books" class="d-flex align-items-end w-100 gap-3">
+                <div style="width: 30%;">
+                    <label for="search" class="form-label text-white">Título</label>
+                    <input type="text" name="search" id="search" class="form-control"
+                           placeholder="Digite o título do livro"
+                           th:value="${search}">
+                </div>
 
-        <!-- Área do usuário à direita -->
+                <div style="width: 30%;">
+                    <label for="categoria" class="form-label text-white">Gênero</label>
+                    <select name="categoria" id="categoria" class="form-select">
+                        <option value="">Todas</option>
+                        <option value="Romance" th:selected="${categoria == 'Romance'}">Romance</option>
+                        <option value="Ficção" th:selected="${categoria == 'Ficção'}">Ficção</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-outline-primary mt-4">Buscar</button>
+                </div>
+            </form>
+        </div>
+
+            <!-- Usuário -->
         <div class="d-flex align-items-center">
-            <!-- Se logado: mostrar dropdown -->
+            <!-- Se logado -->
             <div class="dropdown" th:if="${session.usuarioLogado != null}">
                 <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown"
                    data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,45 +63,45 @@
                 </ul>
             </div>
 
-            <!-- Se NÃO logado: mostrar botão de login -->
+            <!-- Se NÃO logado -->
             <div th:unless="${session.usuarioLogado != null}">
                 <a class="btn btn-outline-primary" href="/loginUsers">Login</a>
             </div>
         </div>
-
     </div>
 </nav>
 
+<!-- Espaço extra por causa do navbar fixo -->
+<div style="height: 80px;"></div>
 
+<!-- Alerta de erro se nenhum livro encontrado -->
+<div th:if="${mensagem}" class="container mt-4">
+    <div class="alert alert-warning text-center" role="alert" th:text="${mensagem}">
+        Nenhum livro encontrado.
+    </div>
+</div>
+<!-- Lista de livros -->
+<div class="container books-list d-flex flex-wrap justify-content-center">
+    <div class="book-container m-3 p-2 border rounded shadow" th:each="book : ${books}"
+         th:onclick="'window.location.href=\'/books/view/' + ${book.id} + '\';'"
+         style="width: 200px; cursor: pointer;">
 
-<div class="books-list">
-    <div class="book-container" th:each="book : ${books}"
-         th:onclick="'window.location.href=\'/books/view/' + ${book.id} + '\';'">
-        <!-- Imagem Principal -->
-        <div class="book-image" th:if="${book.images != null}">
-            <div th:each="img : ${book.images}" th:if="${img.principal}">
-                <img th:src="@{'/uploads/' + ${img.url}}" th:alt="${book.title}" />
-            </div>
-            <!-- Se não existir imagem principal, mostrar a primeira -->
-            <div th:if="${book.images.?[principal].size() == 0}">
-                <div th:if="${book.images.size() > 0}">
-                    <img th:src="@{'/uploads/' + ${book.images[0].url}}" th:alt="${book.title}" />
-                </div>
-                <div th:if="${book.images.size() == 0}" class="no-image">
-                    <p>No principal image available</p>
-                </div>
-            </div>
+        <!-- Imagem -->
+        <div class="book-image mb-2 text-center">
+            <img th:if="${#lists.size(book.images) > 0}"
+                 th:src="@{'/uploads/' + ${book.images.?[principal].size() > 0 ? book.images.?[principal][0].url : book.images[0].url}}"
+                 th:alt="${book.title}"
+                 style="width: 100%; height: auto; max-height: 250px; object-fit: cover;" />
+
+            <p th:if="${#lists.size(book.images) == 0}" class="no-image">No image available</p>
         </div>
 
-        <!-- Se não tiver imagens -->
-        <div class="no-image" th:if="${book.images == null || book.images.size() == 0}">
-            <p>No principal image available</p>
-        </div>
+        <!-- Título -->
+        <h5 class="text-center" th:text="${book.title}">Título</h5>
     </div>
 </div>
 
-</body>
-
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+</body>
 </html>

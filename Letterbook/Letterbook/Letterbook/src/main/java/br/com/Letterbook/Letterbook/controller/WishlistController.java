@@ -11,7 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class WishlistController {
@@ -43,14 +47,32 @@ public class WishlistController {
 
 
     @GetMapping("/wishlist")
-    public String viewWishlist(HttpSession session, Model model) {
+    public String viewWishlist(@RequestParam(value = "search", required = false) String search,
+                               @RequestParam(value = "genre", required = false) String genre,
+                               HttpSession session,
+                               Model model) {
         Users user = (Users) session.getAttribute("usuarioLogado");
         if (user == null) {
             return "redirect:/loginUsers";
         }
 
         Users dbUser = usersRepository.findById(user.getId()).orElseThrow();
-        model.addAttribute("wishlist", dbUser.getWishlist());
+
+        List<Book> wishlist = dbUser.getWishlist();
+
+        if ((search != null && !search.isBlank()) || (genre != null && !genre.isBlank())) {
+            wishlist = wishlist.stream()
+                    .filter(book -> {
+                        boolean matchesTitle = (search == null || search.isBlank()) || book.getTitle().toLowerCase().contains(search.toLowerCase());
+                        boolean matchesGenre = (genre == null || genre.isBlank()) || book.getGenre().equalsIgnoreCase(genre);
+                        return matchesTitle && matchesGenre;
+                    })
+                    .collect(Collectors.toList());  // collect para criar a lista filtrada
+        }
+
+        model.addAttribute("wishlist", wishlist);
+        model.addAttribute("search", search);
+        model.addAttribute("genre", genre);
 
         return "books/wishlist";
     }

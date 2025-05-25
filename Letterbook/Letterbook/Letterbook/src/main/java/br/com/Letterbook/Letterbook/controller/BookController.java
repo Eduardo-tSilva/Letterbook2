@@ -34,19 +34,37 @@ public class BookController {
     private BookRepository bookRepository;
 
 
-    @GetMapping({"","/"})
-    public String showBooksUser(@RequestParam(value = "search", required = false, defaultValue = "") String search,
+    @GetMapping({"", "/"})
+    public String showBooksUser(@RequestParam(value = "search", required = false) String search,
+                                @RequestParam(value = "genre", required = false) String genre,
                                 Model model) {
+
         List<Book> books;
-        if(search.isEmpty()) {
-            books = bookRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+
+        boolean hasSearch = search != null && !search.isBlank();
+        boolean hasCategoria = genre != null && !genre.isBlank();
+
+        if (hasSearch && hasCategoria) {
+            books = bookRepository.findByTitleContainingIgnoreCaseAndGenreIgnoreCase(search, genre);
+        } else if (hasSearch) {
+            books = bookRepository.findByTitleContainingIgnoreCase(search);
+        } else if (hasCategoria) {
+            books = bookRepository.findByGenreIgnoreCase(genre);
         } else {
-            books = bookRepository.findByTitle(search);
+            books = bookRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         }
+
+        if (books.isEmpty()) {
+            model.addAttribute("mensagem", "Nenhum livro encontrado com os filtros fornecidos.");
+        }
+
         model.addAttribute("books", books);
         model.addAttribute("search", search);
-        return "books/userBooks";  // template usuário sem botões
+        model.addAttribute("genre", genre);
+
+        return "books/userBooks";
     }
+
 
     @GetMapping({"/admin"})
     public String showBooks(@RequestParam(value = "search", required = false, defaultValue = "") String search, Model model, HttpSession session) {
@@ -58,11 +76,11 @@ public class BookController {
         }
         List<Book> books;
 
-        if(search.isEmpty()) {
-            books = bookRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-        } else {
-            books = bookRepository.findByTitle(search);
+        books = bookRepository.findByTitleContainingIgnoreCase(search);
+        if (books.isEmpty()) {
+            model.addAttribute("mensagem", "Nenhum livro encontrado com esse título.");
         }
+
 
         model.addAttribute("books", books);
         model.addAttribute("search", search);

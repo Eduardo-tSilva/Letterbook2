@@ -83,6 +83,7 @@ body{
     font-family: 'Abel', sans-serif;
 }
 
+
 .navbar .form-control::placeholder {
     color: #9ca3af;
 }
@@ -117,6 +118,27 @@ body{
 .navbar .dropdown-item:hover {
     background-color: #374151;
     color: #ffffff;
+}
+
+/* Faz o formulário ocupar a largura total e alinhar os campos */
+.navbar form {
+    width: 60%;
+    min-width: 600px;
+}
+
+/* Corrige o alinhamento dos labels e inputs */
+.navbar .form-label {
+    margin-bottom: 0.25rem;
+    color: #ffffff;
+    font-weight: 500;
+    font-family: 'Abel', sans-serif;
+}
+
+.navbar .form-select {
+    background-color: #374151;
+    color: #ffffff;
+    border: 1px solid #4b5563;
+    font-family: 'Abel', sans-serif;
 }
 
 
