@@ -1,0 +1,126 @@
+2025-05-25 19:00:39.173456-03:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:10:37.523137-03:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:10:39.749377-03:00 jdbc[33]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:10:48.074816-03:00 jdbc[43]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:10:50.150826-03:00 jdbc[53]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:11:19.854552-03:00 jdbc[63]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:11:21.951836-03:00 jdbc[73]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:11:50.784564-03:00 jdbc[83]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:12:18.537172-03:00 jdbc[93]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:12:20.619257-03:00 jdbc[103]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:14:31.311389-03:00 jdbc[113]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:16:10.777943-03:00 jdbc[123]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:18:03.767536-03:00 jdbc[133]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:30:22.103002-03:00 jdbc[144]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:30:43.731373-03:00 jdbc[154]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:30:45.924411-03:00 jdbc[164]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:32:22.773899-03:00 jdbc[174]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:47:10.813905-03:00 jdbc[185]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 20:47:34.395600-03:00 jdbc[195]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 21:21:36.886360-03:00 jdbc[216]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 21:22:27.897205-03:00 jdbc[226]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 21:29:06.035025-03:00 jdbc[236]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 21:30:11.976542-03:00 jdbc[246]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 21:31:08.871896-03:00 jdbc[256]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:22:54.399500-03:00 jdbc[277]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:34:27.299453-03:00 jdbc[287]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:40:07.801075-03:00 jdbc[297]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:41:21.060430-03:00 jdbc[307]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:43:01.341010-03:00 jdbc[317]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:43:10.652386-03:00 jdbc[327]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:43:12.771764-03:00 jdbc[337]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:43:40.439778-03:00 jdbc[347]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:45:12.581165-03:00 jdbc[357]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:45:50.381243-03:00 jdbc[367]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:46:19.972157-03:00 jdbc[377]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:47:00.541273-03:00 jdbc[387]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:48:39.317857-03:00 jdbc[397]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 22:54:35.650251-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 23:07:11.175493-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 23:07:13.349524-03:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 23:12:02.302593-03:00 jdbc[33]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-25 23:12:04.415199-03:00 jdbc[43]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_BOOK" already exists; SQL statement:
+create global temporary table HTE_book(id integer, rn_ integer not null, applicationyear bigint, author varchar(255), genre varchar(255), title varchar(255), synopsis TEXT, primary key (rn_)) TRANSACTIONAL [42101-232]

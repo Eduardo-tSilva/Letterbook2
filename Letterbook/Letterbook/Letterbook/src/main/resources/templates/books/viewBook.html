@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title th:text="${book.title}">Book Details</title>
 
+  <link rel="stylesheet" th:href="@{/css/viewBook.css}" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" th:href="@{/css/viewBook.css}">
   <link href="https://fonts.googleapis.com/css2?family=Abel&family=Alumni+Sans+Pinstripe:ital@0;1&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container-fluid px-5 d-flex justify-content-between align-items-center">
-
-    <a class="navbar-brand fw-bold" href="/" >Letterbook</a>
-
+    <a class="navbar-brand fw-bold" href="/">Letterbook</a>
     <div class="d-flex align-items-center">
       <div class="dropdown" th:if="${session.usuarioLogado != null}">
         <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="userDropdown"
@@ -34,13 +34,13 @@
         <a class="btn btn-outline-primary" href="/loginUsers">Login</a>
       </div>
     </div>
-
   </div>
 </nav>
 
-
 <div class="book-container">
   <div class="book-content">
+    <div class="book-image-container">
+
     <div class="book-image" th:if="${principalImage != null}">
       <img th:src="@{'/uploads/' + ${principalImage.url}}" alt="Principal Image">
     </div>
@@ -48,29 +48,47 @@
       <p><em>No principal image available.</em></p>
     </div>
 
-    <div class="book-details">
-      <h2 th:text="${book.title}">Book Title</h2>
-
-      <div class="sub" >
-        <p> <span th:text="${book.applicationyear}">Year</span>
-          <strong>Written by </strong> <span th:text="${book.author}">Author Name</span></p>
-        <p><strong>Genre:</strong> <span th:text="${book.genre}">Genre</span></p>
+    <div class="book-average-rating">
+      <div class="average-rating-badge">
+        <span class="average-value" id="averageValue">0.0</span>
+        <small class="rating-count" id="ratingCount">(0 avaliações)</small>
       </div>
-
-      <p class="synopsis-text" th:text="${book.synopsis}">Synopsis text...</p>
-
+    </div>
 
     </div>
 
-    <div class="book-bar">
+    <div class="book-details">
+      <h2 th:text="${book.title}">Book Title</h2>
+      <div class="sub">
+        <p><span th:text="${book.applicationyear}">Year</span>
+          <strong>Written by </strong> <span th:text="${book.author}">Author Name</span></p>
+        <p><strong>Genre:</strong> <span th:text="${book.genre}">Genre</span></p>
+      </div>
+      <p class="synopsis-text" th:text="${book.synopsis}">Synopsis text...</p>
 
+
+      <div class="book-reviews mt-4">
+        <h5 class="reviews-title">Reviews</h5>
+        <div class="reviews-list" id="reviewsList">
+          <!-- As avaliações serão carregadas aqui via JavaScript -->
+          <div class="text-center py-3">
+            <div class="spinner-border text-warning" role="status">
+              <span class="visually-hidden">Carregando...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="book-bar">
       <div class="bar-item">
         <div class="like-wishlist-group">
           <button class="like-button">
             <i data-lucide="heart"></i>
             <span>Like</span>
           </button>
-
           <form th:action="@{'/wishlist/add/' + ${book.id}}" method="post">
             <button type="submit" class="wishlist-button">
               <i data-lucide="eye"></i>
@@ -80,17 +98,15 @@
         </div>
       </div>
 
-
       <div class="book-rate">
         <div class="rate">
           <span>Rate</span>
-
-          <div class="bar-stars">
-            <span class="star" data-value="1"></span>
-            <span class="star" data-value="2"></span>
-            <span class="star" data-value="3"></span>
-            <span class="star" data-value="4"></span>
-            <span class="star" data-value="5"></span>
+          <div class="star-rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
           </div>
         </div>
       </div>
@@ -98,247 +114,238 @@
       <div class="book-rating">
         <p id="openReviewModal" style="cursor:pointer; color:#fbbf24; font-weight:600;">Review or Log</p>
       </div>
-
     </div>
-
-
   </div>
-</div>
 
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content bg-dark text-light">
-      <div class="modal-header border-0">
-        <h5 class="modal-title" id="reviewModalLabel">Rate and Review</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-        <!-- Sistema de estrelas -->
-        <div class="rate mb-3">
-          <span>Rate:</span>
-          <div class="bar-stars" style="font-size: 2rem; cursor: pointer;">
-            <span class="star" data-value="1">&#9733;</span>
-            <span class="star" data-value="2">&#9733;</span>
-            <span class="star" data-value="3">&#9733;</span>
-            <span class="star" data-value="4">&#9733;</span>
-            <span class="star" data-value="5">&#9733;</span>
+  <!-- Modal de Review -->
+  <div class="modal fade" id="reviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light">
+        <form id="reviewForm" th:action="@{/books/view/{id}/review(id=${book.id})}" method="post">
+          <input type="hidden" name="nota" id="ratingValue" value="0" required>
+          <div class="modal-header">
+            <h5 class="modal-title">Your Review</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div>
-
-        <!-- Campo para review -->
-        <div>
-          <label for="reviewText" class="form-label">Your review:</label>
-          <textarea id="reviewText" class="form-control" rows="4" placeholder="Write your review here..."></textarea>
-        </div>
-
-      </div>
-      <div class="modal-footer border-0">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button onclick = submitReview id="submitReview" type="button" class="btn btn-primary">Submit</button>
+          <div class="modal-body">
+            <div class="mb-4">
+              <label class="mb-2">Rate:</label>
+              <div class="star-rating">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reviewText">Review:</label>
+              <textarea name="comentario" id="reviewText" class="form-control" rows="4" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  // Variável para guardar a nota escolhida
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
 
-
-  // Evento do botão submit (aqui só um exemplo, adapte para enviar seu formulário ou AJAX)
-  document.getElementById('submitReview').addEventListener('click', () => {
-    const reviewText = document.getElementById('reviewText').value.trim();
-
-    if (currentRating === 0) {
-      alert('Please select a rating.');
-      return;
-    }
-
-    if (reviewText.length === 0) {
-      alert('Please write a review.');
-      return;
-    }
-
-    // Aqui você pode fazer o envio via fetch/AJAX ou submit de formulário
-    console.log('Enviar review:', { rating: currentRating, review: reviewText });
-
-    // Fecha o modal após o submit
-    const reviewModal = bootstrap.Modal.getInstance(document.getElementById('reviewModal'));
-    reviewModal.hide();
-
-    // Opcional: limpar campos
-    updateStars(0);
-    document.getElementById('reviewText').value = '';
-    currentRating = 0;
-  });
-
-  // Script para abrir o modal quando clicar no botão
-  document.getElementById('openReviewModal').addEventListener('click', () => {
-    const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
-    reviewModal.show();
-  });
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  const bookId = /*[[${book.id}]]*/ 0;
+  const userId = /*[[${session.usuarioLogado?.id}]]*/ 0;
+  /*]]>*/
 </script>
 
 <script>
-  const stars = document.querySelectorAll('.star');
-  let currentRating = 0;
+  document.addEventListener('DOMContentLoaded', function() {
+    // Inicialização
+    const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
+    let currentRating = 0;
+    let hoverRating = 0;
 
-  function updateStars(rating) {
-    stars.forEach((star, i) => {
-      let starValue = i + 1;
-      if (rating >= starValue) {
-        star.classList.add('full');
-        star.classList.remove('half');
-      } else if (rating >= starValue - 0.5) {
-        star.classList.add('half');
-        star.classList.remove('full');
-      } else {
-        star.classList.remove('full', 'half');
+    // Seleciona TODAS as estrelas (página e modal)
+    const allStars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('ratingValue');
+    const reviewText = document.getElementById('reviewText');
+    const reviewForm = document.getElementById('reviewForm');
+
+    // Ao abrir o modal
+    document.getElementById('openReviewModal').addEventListener('click', function() {
+      fetch(`/books/view/check-review?bookId=${bookId}&userId=${userId}`)
+              .then(response => response.json())
+              .then(data => {
+                if (data.hasReview) {
+                  currentRating = data.review.nota;
+                  ratingInput.value = currentRating;
+                  reviewText.value = data.review.comentario || '';
+                  updateAllStars(currentRating);
+                } else {
+                  currentRating = 0;
+                  ratingInput.value = '0';
+                  reviewText.value = '';
+                  resetStars();
+                }
+                reviewModal.show();
+              })
+              .catch(error => {
+                console.error('Erro ao verificar avaliação:', error);
+              });
+    });
+
+    // Configura interação para todas as estrelas
+    allStars.forEach(star => {
+      star.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const starValue = parseInt(this.getAttribute('data-value'));
+
+        // Determina se clicou na metade esquerda (meia estrela) ou direita (cheia)
+        currentRating = clickX < rect.width / 2 ? starValue - 0.5 : starValue;
+        ratingInput.value = currentRating;
+        updateAllStars(currentRating);
+      });
+
+      star.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const starValue = parseInt(this.getAttribute('data-value'));
+
+        hoverRating = mouseX < rect.width / 2 ? starValue - 0.5 : starValue;
+        updateAllStars(hoverRating, true);
+      });
+
+      star.addEventListener('mouseleave', function() {
+        updateAllStars(currentRating);
+      });
+    });
+
+    // Funções auxiliares
+    function updateAllStars(rating, isHover = false) {
+      allStars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+
+        star.classList.remove('full', 'half', 'hovered');
+
+        if (isHover) {
+          if (rating >= starValue) {
+            star.classList.add('hovered');
+          } else if (rating >= starValue - 0.5) {
+            star.classList.add('half', 'hovered');
+          }
+        } else {
+          if (rating >= starValue) {
+            star.classList.add('full');
+          } else if (rating >= starValue - 0.5) {
+            star.classList.add('half');
+          }
+        }
+      });
+    }
+
+    function resetStars() {
+      allStars.forEach(star => {
+        star.classList.remove('full', 'half', 'hovered');
+      });
+    }
+
+    // Validação do formulário
+    reviewForm.addEventListener('submit', function(e) {
+      if (currentRating === 0) {
+        e.preventDefault();
+        alert('Please select a rating');
       }
     });
+  });
+
+  // Função para atualizar a média de avaliações
+  function updateAverageRating() {
+    fetch(`/books/view/${bookId}/average-rating`)
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById('averageValue').textContent = data.average.toFixed(1);
+              document.getElementById('ratingCount').textContent = `(${data.count} avaliações)`;
+            })
+            .catch(error => {
+              console.error('Erro ao atualizar média:', error);
+            });
   }
 
-  stars.forEach((star, index) => {
-    star.addEventListener('mousemove', (e) => {
-      const rect = star.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-
-      let hoverValue = index + 1;
-      if (mouseX < rect.width / 2) {
-        hoverValue -= 0.5;
-      }
-      updateStars(hoverValue);
-    });
-
-    star.addEventListener('click', (e) => {
-      const rect = star.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-
-      let clickedValue = index + 1;
-      if (mouseX < rect.width / 2) {
-        clickedValue -= 0.5;
-      }
-      currentRating = clickedValue;
-      updateStars(currentRating);
-      console.log('Avaliação marcada:', currentRating);
-    });
+  // Atualiza após enviar uma nova avaliação
+  document.getElementById('reviewForm')?.addEventListener('submit', function() {
+    setTimeout(updateAverageRating, 500);
   });
 
-  document.querySelector('.bar-stars').addEventListener('mouseleave', () => {
-    updateStars(currentRating);
+  // Carrega inicialmente (caso não use Thymeleaf)
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof bookId !== 'undefined') {
+      updateAverageRating();
+    }
+  });
+
+  // Função para carregar as avaliações
+  function loadAllReviews() {
+    fetch(`/books/view/${bookId}/all-reviews`)
+            .then(response => response.json())
+            .then(reviews => {
+              const reviewsList = document.getElementById('reviewsList');
+
+              if (reviews.length === 0) {
+                reviewsList.innerHTML = `
+                    <div class="no-reviews">
+                        Nenhuma avaliação ainda. Seja o primeiro a avaliar!
+                    </div>
+                `;
+                return;
+              }
+
+              reviewsList.innerHTML = reviews.map(review => `
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="review-user">${review.userName || 'Usuário Anônimo'}</span>
+                        <span class="review-rating">${review.nota.toFixed(1)} ★</span>
+                    </div>
+                    <div class="review-date">
+                        ${new Date(review.dataAvaliacao).toLocaleDateString('pt-BR')}
+                    </div>
+                    <div class="review-text">
+                        ${review.comentario || 'Sem comentário'}
+                    </div>
+                </div>
+            `).join('');
+            })
+            .catch(error => {
+              console.error("Erro ao carregar avaliações:", error);
+              document.getElementById('reviewsList').innerHTML = `
+                <div class="text-danger p-3">
+                    Erro ao carregar avaliações. Tente recarregar a página.
+                </div>
+            `;
+            });
+  }
+
+  // Carrega as avaliações quando a página abre
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof bookId !== 'undefined') {
+      loadAllReviews();
+      updateAverageRating(); // Mantém a função da média
+    }
+  });
+
+  // Atualiza após enviar uma nova avaliação
+  document.getElementById('reviewForm')?.addEventListener('submit', function() {
+    setTimeout(() => {
+      updateAverageRating();
+      loadAllReviews(); // Recarrega a lista também
+    }, 500);
   });
 </script>
-
-<!-- Novo script para modal de avaliação -->
-<script>
-  const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
-  const openReviewModalBtn = document.getElementById('openReviewModal');
-  const modalStars = document.querySelectorAll('#modalStars .modal-star');
-  let modalRating = 0;
-
-  // Abrir modal ao clicar no texto
-  openReviewModalBtn.addEventListener('click', () => {
-    reviewModal.show();
-  });
-
-  // Atualizar estrelas da modal
-  document.addEventListener('DOMContentLoaded', () => {
-    const stars = document.querySelectorAll('.star');
-    const reviewText = document.getElementById('reviewText');
-    const submitButton = document.getElementById('submitReview');
-    let currentRating = 0;
-
-    function updateStars(rating) {
-      stars.forEach((star, index) => {
-        star.classList.toggle('active', index < rating);
-      });
-      currentRating = rating;
-    }
-
-    stars.forEach((star, index) => {
-      star.addEventListener('mouseover', () => updateStars(index + 1));
-      star.addEventListener('click', () => updateStars(index + 1));
-    });
-
-    submitButton.addEventListener('click', () => {
-      const review = reviewText.value.trim();
-
-      if (currentRating === 0 || review.length === 0) {
-        alert('Escolha uma nota e escreva uma avaliação!');
-        return;
-      }
-
-      const bookId = /*[[${book.id}]]*/ '0';
-
-      fetch(`/reviews/add/${bookId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ rating: currentRating, review })
-      })
-              .then(response => {
-                if (!response.ok) throw new Error('Erro ao enviar review.');
-                return response.json();
-              })
-              .then(() => {
-                alert('Review enviada!');
-                bootstrap.Modal.getInstance(document.getElementById('reviewModal')).hide();
-                updateStars(0);
-                reviewText.value = '';
-              })
-              .catch(err => alert(err.message));
-    });
-  });
-
-
-  // Limpar modal ao fechar (Cancel ou fechar modal)
-  document.getElementById('cancelReview').addEventListener('click', () => {
-    modalRating = 0;
-    updateModalStars(modalRating);
-    document.getElementById('reviewText').value = '';
-  });
-  document.getElementById('reviewModal').addEventListener('hidden.bs.modal', () => {
-    modalRating = 0;
-    updateModalStars(modalRating);
-    document.getElementById('reviewText').value = '';
-  });
-
-  // Botão submit da modal (exemplo com alert)
-  document.getElementById('submitReview').addEventListener('click', () => {
-    const reviewText = document.getElementById('reviewText').value.trim();
-    if (modalRating === 0) {
-      alert('Please select a star rating.');
-      return;
-    }
-    if (reviewText.length === 0) {
-      alert('Please write a review.');
-      return;
-    }
-    // Aqui você pode fazer o POST para seu backend com modalRating e reviewText
-    fetch('http://localhost:8080/assessments', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        usuarioId: userId,        // tipo Long
-        livroId: bookId,          // tipo Integer
-        nota: rating,             // tipo Integer
-        comentario: reviewText    // tipo String
-      })
-    })
-  })
-
-</script>
-
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-  lucide.createIcons();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

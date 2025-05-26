@@ -1,8 +1,8 @@
 body {
-    font-family: 'Times New Roman', sans-serif;
+    font-family: 'Times New Roman', sans-serif !important;
     padding-top: 2rem;
-    background-color: #111827;
-    color: #e5e7eb;
+    background-color: #111827 !important;
+    color: #e5e7eb !important;
 }
 
 .book-container {
@@ -10,7 +10,10 @@ body {
     max-width: 1100px;
     margin: 0 auto;
     padding: 2rem;
+    padding-top: 4rem !important;
 }
+
+.book-container
 
 .book-content {
     display: flex;
@@ -41,14 +44,12 @@ body {
     font-size: 2.250rem;
     margin-bottom: 1rem;
     color: #ffffff;
-
 }
 
 .book-details p {
     margin: 0.5rem 0;
     line-height: 1.5;
     font-size: 1.110rem;
-
 }
 
 .sub {
@@ -62,7 +63,7 @@ body {
     text-align: justify;
 }
 
-span{
+span {
     font-weight: bold;
     font-size: 1.25rem;
 }
@@ -78,16 +79,12 @@ strong {
     margin-top: 0;
 }
 
-.book-details h2 {
-    margin-top: 0;
-}
-
 .book-bar {
     display: flex;
-    flex-direction: row; /* <-- isso coloca os itens lado a lado */
-    justify-content: space-around; /* distribui o espaço entre eles */
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap; /* quebra se faltar espaço */
+    flex-wrap: wrap;
     width: 100%;
     background-color: #374151;
     padding: 1rem;
@@ -98,8 +95,6 @@ strong {
     font-size: 1.2rem;
     gap: 1rem;
 }
-
-
 
 .bar-item {
     display: flex;
@@ -112,70 +107,16 @@ strong {
 
 .bar-stars {
     font-size: 1.2rem;
-    color: #fbbf24; /* amarelo para as estrelas */
-}
-
-.alumni-sans-pinstripe-regular {
-    font-family: "Alumni Sans Pinstripe", sans-serif;
-    font-style: normal;
-}
-
-.book-details span:first-of-type {
-    margin-right: 0.5rem;
-}
-
-.rate {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    user-select: none;
-    font-size: 40px;
-}
-
-.bar-stars {
-    display: flex;
-}
-
-.star {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background: url('data:image/svg+xml;utf8,<svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12,17.27 18.18,21 16.54,13.97 22,9.24 14.81,8.63 12,2 9.19,8.63 2,9.24 7.46,13.97 5.82,21"/></svg>') no-repeat center;
-    background-size: contain;
-}
-
-/* camada dourada de preenchimento */
-.star::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%;
-    width: 0;
-    background: url('data:image/svg+xml;utf8,<svg fill="gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12,17.27 18.18,21 16.54,13.97 22,9.24 14.81,8.63 12,2 9.19,8.63 2,9.24 7.46,13.97 5.82,21"/></svg>') no-repeat center;
-    background-size: contain;
-    pointer-events: none;
-    transition: width 0.2s ease;
-}
-
-/* preenchimento total */
-.star.full::before {
-    width: 100%;
-}
-
-/* preenchimento metade */
-.star.half::before {
-    width: 50%;
+    color: #fbbf24;
 }
 
 .book-rating {
-    font-weight:  bold!important;
+    font-weight: bold !important;
 }
 
 .like-wishlist-group {
     display: flex;
-    gap: 2rem; /* mais espaço entre os botões */
+    gap: 2rem;
     align-items: center;
 }
 
@@ -191,13 +132,13 @@ strong {
     padding: 0;
     display: flex;
     align-items: center;
-    gap: 0.5rem; /* espaço entre o ícone e o texto */
+    gap: 0.5rem;
     transition: color 0.2s ease;
 }
 
 .like-button:hover,
 .wishlist-button:hover {
-    color: #fbbf24; /* amarelo ao passar o mouse */
+    color: #fbbf24;
 }
 
 .like-button i,
@@ -206,7 +147,59 @@ strong {
     height: 20px;
 }
 
-/* NAVBAR GERAL */
+/* Sistema de Estrelas - Versão Funcional */
+.star-rating {
+    display: inline-flex;
+    gap: 3px;
+    font-size: 0; /* Remove espaços entre as estrelas */
+}
+
+.star {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    color: #6b7280; /* Cinza para estrela não selecionada */
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* Estrela cheia */
+.star.full {
+    color: #f59e0b; /* Amarelo para estrela selecionada */
+}
+
+/* Meia estrela */
+.star.half {
+    color: #6b7280; /* Fundo cinza */
+}
+
+.star.half::before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #f59e0b; /* Metade amarela */
+}
+
+/* Efeito hover */
+.star:hover,
+.star.hovered {
+    transform: scale(1.1);
+}
+
+.star.half.hovered::before {
+    color: #fbbf24; /* Amarelo mais claro no hover */
+}
+
+
+#openReviewModal:hover {
+    text-decoration: underline;
+}
+
+/* NAVBAR */
 .navbar {
     background-color: #1f2937 !important;
     color: #ffffff !important;
@@ -215,8 +208,6 @@ strong {
     padding-bottom: 0.75rem;
     height: 70px;
 }
-
-/* TITULO */
 .navbar-brand {
     color: #ffffff !important;
     font-size: 1.8rem !important;
@@ -224,49 +215,124 @@ strong {
     padding-left: 0.5rem;
     font-family: 'Alumni Sans Pinstripe', sans-serif;
 }
-
-/* CAMPO DE PESQUISA */
-.navbar .form-control {
-    background-color: #374151;
-    color: #ffffff;
-    border: 1px solid #4b5563;
-    font-size: 1rem !important;
-    font-family: 'Abel', sans-serif !important;
-}
-
-.navbar .form-control::placeholder {
-    color: #9ca3af;
-}
-
 .navbar .btn-outline-primary {
     color: #60a5fa;
     border-color: #60a5fa;
     font-weight: bold;
 }
-
 .navbar .btn-outline-primary:hover {
     background-color: #60a5fa;
     color: #ffffff;
 }
-
-/* DROPDOWN DO USUÁRIO */
-.navbar .dropdown-toggle {
-    color: #60a5fa;
-    font-weight: bold;
-    font-family: 'Abel', sans-serif;
-}
-
 .navbar .dropdown-menu {
     background-color: #1f2937;
     border: 1px solid #374151;
 }
-
 .navbar .dropdown-item {
     color: #d1d5db;
 }
-
 .navbar .dropdown-item:hover {
     background-color: #374151;
     color: #ffffff;
 }
 
+/* Modal */
+.modal-content.bg-dark {
+    background-color: #1f2937 !important;
+    border: 1px solid #374151;
+}
+.form-control {
+    background-color: #374151;
+    color: white;
+    border: 1px solid #4b5563;
+}
+.form-control:focus {
+    background-color: #374151;
+    color: white;
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 0.25rem rgba(96, 165, 250, 0.25);
+}
+
+/* Container da capa + média */
+.book-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 230px; /* mesma largura da capa */
+}
+
+/* Estilo da média */
+.book-rating-average {
+    text-align: center;
+    width: 100%;
+    padding: 6px 0;
+    background-color: rgba(55, 65, 81, 0.8); /* #374151 com transparência */
+    border-radius: 0 0 8px 8px; /* arredonda apenas as bordas inferiores */
+}
+
+.average-value {
+    font-weight: bold;
+    color: #fbbf24;
+    font-size: 1.1rem;
+}
+
+.rating-count {
+    color: #d1d5db;
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
+/* Estilos para a seção de avaliações */
+.book-reviews {
+    background-color: #1f2937;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.reviews-title {
+    color: #d1d5db;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    border-bottom: 1px solid #374151;
+    padding-bottom: 0.5rem;
+}
+
+.review-item {
+    background-color: #374151;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.review-user {
+    font-weight: bold;
+    color: #d1d5db;
+}
+
+.review-rating {
+    color: #fbbf24;
+}
+
+.review-date {
+    color: #9ca3af;
+    font-size: 0.8rem;
+}
+
+.review-text {
+    color: #e5e7eb;
+    margin-top: 0.5rem;
+}
+
+.no-reviews {
+    color: #9ca3af;
+    text-align: center;
+    padding: 1rem;
+}

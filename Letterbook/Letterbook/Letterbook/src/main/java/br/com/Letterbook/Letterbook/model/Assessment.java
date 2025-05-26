@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ASSENTMENT")
+@Table(name = "ASSESSMENT", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"usuario_id", "livro_id"})
+})
 public class Assessment {
 
     @Id
@@ -18,7 +20,7 @@ public class Assessment {
     private Integer livroId;
 
     @Column(nullable = false)
-    private Integer nota;
+    private double nota;
 
     @Column(columnDefinition = "TEXT")
     private String comentario;
@@ -52,11 +54,11 @@ public class Assessment {
         this.livroId = livroId;
     }
 
-    public Integer getNota() {
+    public double getNota() {
         return nota;
     }
 
-    public void setNota(Integer nota) {
+    public void setNota(double nota) {
         this.nota = nota;
     }
 
